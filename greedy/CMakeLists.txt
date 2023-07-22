@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.16)
+
+project(GreedyExamples)
+
+include_directories(include)
+add_executable(MinTimeJob2 mintime_job2.cpp)
+target_compile_options(MinTimeJob2 PRIVATE -g -O3 -Werror -Wall)
+add_executable(MaxSumSubarray maxsum_subarray.cpp)
+target_compile_options(MaxSumSubarray PRIVATE -g -O3 -Werror -Wall)
+add_executable(ContiguousSubarrayKFreq contiguous_subarray_kfreq.cpp)
+target_compile_options(ContiguousSubarrayKFreq PRIVATE -g -O3 -Werror -Wall)
+add_executable(WaysBuildings ways_buildings.cpp)
+target_compile_options(WaysBuildings PRIVATE -g -O3 -Werror -Wall)
+add_executable(BuySellStock3 buy_sell_stock3.cpp)
+target_compile_options(BuySellStock3 PRIVATE -g -O3 -Werror -Wall)
