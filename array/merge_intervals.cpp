@@ -52,6 +52,44 @@ vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals) {
   return result;
 }
 
+class Pair {
+public:
+  int first, second;
+  Pair(int x, int y) {
+    first = x;
+    second = y;
+  }
+};
+
+vector<Pair> merge_intervals(vector<Pair> &v) {
+  vector<Pair> result;
+  int N = (int)v.size();
+  if (N <= 1) {
+    result = v;
+    return result;
+  }
+
+  int j = 0;
+  int i = 1;
+  for (i = 1; i < N; i++) {
+    if (v[j].second < v[i].first) {
+      result.push_back(v[j]);
+      j = i;
+    } else {
+      v[j].second = max(v[j].second, v[i].second);
+      v[j].first = min(v[j].first, v[i].first);
+    }
+  }
+
+  if (j == i) {
+    result.push_back(v[i]);
+  } else {
+    result.push_back(v[j]);
+  }
+
+  return result;
+}
+
 int main(int argc, char *argv[]) {
 
   vector<vector<int>> intervals = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
@@ -59,6 +97,16 @@ int main(int argc, char *argv[]) {
 
   print(mergeIntervals(intervals));
   print(mergeIntervals(intervals2));
+
+  vector<Pair> intervals3;
+  intervals3.push_back(Pair(1, 3));
+  intervals3.push_back(Pair(2, 6));
+  intervals3.push_back(Pair(8, 10));
+  intervals3.push_back(Pair(15, 18));
+  auto result = merge_intervals(intervals3);
+  for (auto i = 0; i < (int)result.size(); i++) {
+    cout << result[i].first << "," << result[i].second << endl;
+  }
 
   return 0;
 }

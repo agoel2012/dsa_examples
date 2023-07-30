@@ -54,6 +54,37 @@ vector<vector<int>> combinationSum(int n, int k) {
   return result;
 }
 
+bool sumHelper(vector<int> arr, vector<int> &path, int target, int startIndex) {
+  // Base case
+  if (target == 0 && path.size() == 3) {
+    for_each(path.begin(), path.end(), [](int item) { cout << item << endl; });
+    return true;
+  }
+
+  if (target < 0 || path.size() > 3) {
+    return false;
+  }
+
+  bool result = false;
+  for (int i = startIndex; i < (int)arr.size(); i++) {
+    path.push_back(arr[i]);
+    if (sumHelper(arr, path, target - arr[i], i + 1)) {
+      result = true;
+      return result;
+    }
+
+    path.pop_back();
+  }
+
+  return result;
+}
+
+bool find_sum_of_three(vector<int> arr, int required_sum) {
+  sort(arr.begin(), arr.end());
+  vector<int> path;
+  return sumHelper(arr, path, required_sum, 0);
+}
+
 int main(int argc, char *argv[]) {
   /** Test usecase */
   vector<pair<int, int>> candidates = {{3, 7}, {3, 9}, {4, 1}};
@@ -62,6 +93,8 @@ int main(int argc, char *argv[]) {
     int n = candidates[i].second;
     printCombinations(combinationSum(n, k));
   }
+
+  cout << find_sum_of_three({3, 7, 1, 2, 8, 4, 5}, 20) << endl;
 
   return 0;
 }

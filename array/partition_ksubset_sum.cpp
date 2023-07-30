@@ -51,10 +51,10 @@ bool backtrackDfsSubsets(vector<int> nums, unordered_map<string, bool> &cache,
 }
 
 bool canPartitionSubsetsHelper(vector<int> nums, int k, int target_sum) {
-        int N = nums.size();
-	unordered_map<string, bool> cache;
-	string path(N, '0');
-	return backtrackDfsSubsets(nums, cache, path, k, 0, target_sum, 0, 0);
+  int N = nums.size();
+  unordered_map<string, bool> cache;
+  string path(N, '0');
+  return backtrackDfsSubsets(nums, cache, path, k, 0, target_sum, 0, 0);
 }
 
 bool canPartitionKSubsets(vector<int> &nums, int k) {
@@ -86,6 +86,6 @@ int main(int argc, char *argv[]) {
   int k2 = 3;
 
   cout << ((canPartitionKSubsets(nums1, k1)) ? "True" : "False") << endl;
-  cout << ((canPartitionKSubsets(nums2, k2)) ? "True" : "False")  << endl;
+  cout << ((canPartitionKSubsets(nums2, k2)) ? "True" : "False") << endl;
   return 0;
 }
